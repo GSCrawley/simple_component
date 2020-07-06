@@ -17,11 +17,14 @@ class HelloWorld extends HTMLElement {
       // closed: Denies access to the node(s) of a closed shadow root from JavaScript outside it
       
       // Make a new element to hold hello world
-      this._el = document.createElement('span')
+      this._el = document.createElement('h1')
       // Set the content of the new element
       this._el.innerHTML = 'Hello World'
       // Set styles on the new element
-      this._el.style.color = 'red'
+      this._el.style.color = 'orange'
+      this._el.style.fontSize = '24px'
+      this._el.style.backgroundColor = 'yellow'
+      this._el.style.letterSpacing = '0.5px'
   
       // Add this element to the shadow root
       this._shadowRoot.appendChild(this._el)
