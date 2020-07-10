@@ -1,46 +1,47 @@
 // Make a new Component
 class RansomNote extends HTMLElement {
-    constructor() {
-      super(); 
-      this._shadowRoot = this.attachShadow({ mode: 'open' });
+  constructor() {
+    super(); 
+    this._shadowRoot = this.attachShadow({ mode: 'open' });
+    
+    // Get the content of the element defined in the HTML document.
+    this._text = this.innerHTML
+    console.log(this.innerHTML)
+    // Split the string into an array of characters
+    this._charactersArray = this._text.split('')
+    // Make an array to hold some el (there will be one for each character)
+    this._elArray = [] 
+    // Loop over each character in the array
+    for (let i = 0; i < this._charactersArray.length; i += 1) {
+      const el = document.createElement('div')
+      el.style.color = `hsl(${Math.random() * 360},100%,50%)`
+      el.style.display = 'inline-block'
+      el.innerHTML = this._charactersArray[i]
+      el.style.fontSize = (Math.random() * 30 + 20) + 'px'
+      el.style.padding = (Math.random() * 5 + 3) + 'px'
+      el.style.transform =`rotate(${Math.random() * 24 - 12}deg)`
+      el.style.fontWeight = Math.random() * 6 * 100
+      el.style.borderWidth = Math.random() * 5
       
-      // Get the text of the host element this.innerHTML
-  
-      // Split the string into an array of words text.split(' ')
-  
-      // Loop over each word in the array
-  
-        // Make a span 
-  
-        // Set the innerHTML of the span to the current word 
-  
-        // Set a random style for example: 
-        // span.style.fontSize = `${Math.random() * 20 + 12}px`
-        // Should set a fontSize between 12px and 32px
-  
-        // Repeat the process above for as many styles as you can. For example: 
-        // span.style.transform = `rotate(${Math.random() * 40 - 20}deg)`
-        // WOuld generate a a rotation of -20deg to +20deg
-  
-        // Append the word to the shadowroot
+      const borderStyles = ['none', 'solid', 'double', 'dotted', 'dashed', 'groove', 'ridge', 'inset', 'outset']
+      el.style.borderStyle = borderStyles[Math.floor(Math.random() * borderStyles.length)]
+      
+      // if (Math.random() > 0.5) {
+      //   el.style.color = '#fff'
+      //   el.style.backgroundColor = '#000'
+      // }
+
+      const fontFamilies = ['Arial', 'Helvetica', 'sans-serif', 'Times New Roman', 'Times', 'serif', 'Courier']
+      el.style.fontFamily = fontFamilies[Math.floor(Math.random() * fontFamilies.length)]
+      this._shadowRoot.appendChild(el)
     }
   }
-  
-  customElements.define('ransom-note', RansomNote);
+}
+
+customElements.define('ransom-note', RansomNote);
   
   /*
-  - Challenge - 1 - 
-  You need a tag that generates text that looks like a ransom note. 
-  Each character needs a different style. The more random and different 
-  you can make each of the characters the better. 
-  Take a look at the Sample HTML code: 
-  <p>
-    <span style="font-size: 22px;">A</span>
-    <span style="font-size: 16px;">B</span>
-    <span style="font-size: 24px;">C</span>
-    <span style="font-size: 33px;">D</span>
-    <span style="font-size: 18px;">E</span>
-  </p>
+
   - Challenge - 1 - 
   We need a tag that generates text text that looks like a ransom note. 
   Each character needs a different style. The more random and different 
